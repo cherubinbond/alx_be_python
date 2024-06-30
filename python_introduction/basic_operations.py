@@ -5,7 +5,7 @@ number2 = 5
 sum_result = number1 + number2
 subtraction_result = number1 - number2
 multiplication_result = number1 * number2
-print("sum_results")
+#result 
 print  ( "{Sum} of  {number1} and {number2} is {sum_result}")
 print ( "{Subtraction} of  {number1} and {number2} is {subtraction_result}")
 print ( "{Multiplication} of  {number1} and {number2} is {multiplication_result}")
