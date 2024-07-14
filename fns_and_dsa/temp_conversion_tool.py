@@ -1,34 +1,40 @@
-# File: explore_datetime.py
-from datetime import datetime, timedelta
+# File: temp_conversion_tool.py
 
-def display_current_datetime():
-    # Get the current date and time
-    current_date_time = datetime.now()
+# Define global conversion factors
+FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
+CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
 
-    # Format the current date and time
-    formatted_date_time = current_date_time.strftime("%Y-%m-%d %H:%M:%S")
+def convert_to_celsius(fahrenheit):
+    # Convert Fahrenheit to Celsius
+    celsius = (fahrenheit - 32) * FAHRENHEIT_TO_CELSIUS_FACTOR
+    return celsius
 
-    # Print the formatted current date and time
-    print(f"Current date and time: {formatted_date_time}")
-
-def calculate_future_date():
-    # Prompt the user for the number of days to add
-    number_of_days = int(input("Enter the number of days to add to the current date: "))
-
-    # Get the current date
-    current_date = datetime.now().date()
-
-    # Calculate the future date
-    future_date = current_date + timedelta(days=number_of_days)
-
-    # Format and print the future date
-    formatted_future_date = future_date.strftime("%Y-%m-%d")
-    print(f"Future date: {formatted_future_date}")
+def convert_to_fahrenheit(celsius):
+    # Convert Celsius to Fahrenheit
+    fahrenheit = celsius * CELSIUS_TO_FAHRENHEIT_FACTOR + 32
+    return fahrenheit
 
 def main():
-    display_current_datetime()
-    calculate_future_date()
+    # Prompt user for temperature and unit
+    while True:
+        try:
+            temperature = float(input("Enter the temperature to convert: "))
+            unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
+
+            if unit == 'F':
+                converted_temperature = convert_to_celsius(temperature)
+                print(f"{temperature:.1f}°F is {converted_temperature:.1f}°C")
+                break
+            elif unit == 'C':
+                converted_temperature = convert_to_fahrenheit(temperature)
+                print(f"{temperature:.1f}°C is {converted_temperature:.1f}°F")
+                break
+            else:
+                print("Invalid input. Please enter 'C' or 'F'.")
+        except ValueError:
+            print("Invalid temperature. Please enter a numeric value.")
 
 if __name__ == "__main__":
     main()
+
 
